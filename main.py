@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from database import engine
 from models import Base
+from routers import insurance
 
 app = FastAPI(
     title="Insurance API con FastAPI",
@@ -8,6 +9,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.include_router(insurance.router)
 
 @app.get("/")
 def index():
@@ -16,4 +18,4 @@ def index():
         "message": "Bienvenido a mi API"
     }
     
-Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)
